@@ -142,6 +142,17 @@ app.get('/api/games/', (req, res) => {
       ? -1
       : 1;
 
+  if (gameList.length === 0) {
+    res
+      .status(503)
+      .send({
+        status: 503,
+        message: 'Server not ready yet',
+        error: true
+      });
+    return;
+  }
+
   const data = gameList
     .filter(g => g.title.toString().toLowerCase().indexOf(filter) !== -1)
     .sort(sortGames(sort, order))
