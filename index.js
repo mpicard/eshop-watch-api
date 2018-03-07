@@ -72,7 +72,6 @@ const sortGames = (sort, order) =>
           id: game.id,
           art: game.front_box_art,
           title: game.title,
-          // release_date: new Date(game.release_date),
           release_date: game.release_date ? new Date(game.release_date) : null,
           a_nsuid: eshop.parseNSUID(game, eshop.Region.AMERICAS),
           prices: {}
@@ -89,7 +88,6 @@ const sortGames = (sort, order) =>
             id: game.fs_id,
             art: game.image_url,
             title: game.title,
-            // release_date: new Date(game.release_date),
             release_date: game.release_date ? new Date(game.release_date) : null,
             e_nsuid: eshop.parseNSUID(game, eshop.Region.EUROPE),
             prices: {}
