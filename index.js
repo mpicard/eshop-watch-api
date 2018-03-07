@@ -142,13 +142,17 @@ app.get('/api/games/', (req, res) => {
       ? -1
       : 1;
 
+  const data = gameList
+    .filter(g => g.title.toString().toLowerCase().indexOf(filter) !== -1)
+    .sort(sortGames(sort, order))
+
+  const count = data.length;
+
   res.json({
     has_more: paginate.hasNextPages(req)(pageCount),
     total: gameList.length,
-    data: gameList
-      .filter(g => g.title.toString().toLowerCase().indexOf(filter) !== -1)
-      .sort(sortGames(sort, order))
-      .splice(req.skip, req.query.limit)
+    count: data.length,
+    data: data.splice(req.skip, req.query.limit)
   });
 });
 
