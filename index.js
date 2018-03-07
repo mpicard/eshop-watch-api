@@ -1,5 +1,6 @@
 const opbeat = require('opbeat').start();
 const express = require('express');
+const cors = require('cors');
 const paginate = require('express-paginate');
 const eshop = require('nintendo-switch-eshop');
 const compression = require('compression');
@@ -121,6 +122,8 @@ const sortGames = (sort, order) =>
     process.exit(1);
   }
 })();
+
+app.use(cors());
 
 app.use(compression())
 
